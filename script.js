@@ -51,11 +51,12 @@ function salvarCarrinho(){
 function carregarCarrinho(){
     const produtosEmObj = localStorage.getItem('carrinho')
     if(!produtosEmObj) return
-
+    
+    carrinho = JSON.parse(produtosEmObj)
+    
     carrinho.forEach(item =>{
         let pOriginal = produtos.find(elemento => elemento.id === item.id)
 
-        carrinho = JSON.parse(produtosEmObj)
 
         if(pOriginal){
             pOriginal.quantidade = item.quantidade
