@@ -53,7 +53,7 @@ function carregarCarrinho(){
     if(!produtosEmObj) return
     
     carrinho = JSON.parse(produtosEmObj)
-    
+
     carrinho.forEach(item =>{
         let pOriginal = produtos.find(elemento => elemento.id === item.id)
 
@@ -173,8 +173,10 @@ const paginaCarrinho_container = document.querySelector('.paginaCarrinho_contain
 paginaCarrinho.addEventListener('click', (e)=>{
     
     if(e.target.classList.contains('fa-trash-can')){
+        e.stopPropagation()
          let id = Number(e.target.dataset.id)
        excluir(id)
+       return
     }
 })
 
@@ -226,6 +228,7 @@ function excluir(id){
     zerarBtnCarrinho(id)
     renderizarCarrinho()
     renderizarTotal()
+    salvarCarrinho()
 
 }
 
